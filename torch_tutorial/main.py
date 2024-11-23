@@ -18,7 +18,7 @@ from torch_tutorial.logger import Logger
 
 if __name__ == '__main__':
     args = init_parser_args()
-    pprint(args)
+    pprint(args.string)
     print_path()
     if not LOG_PATH.exists():
         LOG_PATH.mkdir(parents=True)
@@ -37,7 +37,7 @@ if __name__ == '__main__':
         loss = train(dataloader, model, criterion, optimizer, scheduler, device)
         test_loss, accuracy = test(dataloader, model, criterion, device)
         if epoch and (epoch + 1) % (args.epochs / 10) == 0:
-            print(f"epoch: {epoch + 1:4}  loss: {loss} test_loss: {test_loss} accuracy: {accuracy}")
+            print(f"epoch: {epoch + 1:<4} loss: {loss:<6} test_loss: {test_loss:<6} accuracy: {accuracy:<4}")
             Logger.insert_row(epoch=epoch + 1, train_loss=loss, test_loss=test_loss, accuracy=accuracy, args=args, model=model)
 
     # A common way to save a model is to serialize the internal state dictionary (containing the model parameters).

@@ -12,16 +12,14 @@ source venv/bin/activate
 pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 
-## Begin Training
+## Training
 
 ```shell
-cd torch_tutorial
-python main.py --device 0 --cpu --seed 0 --weight_decay 0.001 --lr 0.01 --epochs 3000
+python torch_tutorial/main.py --device 0 --cpu --seed 0 --lr 0.01 --weight_decay 0.001 --epochs 3000
 ```
 
-## Begin Inferencing
+## Inference
 
 ```shell
-cd torch_tutorial
-python inference.py
+python torch_tutorial/inference.py
 ```

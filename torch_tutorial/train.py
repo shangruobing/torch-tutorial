@@ -4,7 +4,7 @@ import torch.nn as nn
 
 def init_optimizer(model, lr=0.01, weight_decay=0.001):
     """
-    To train a model, we need a loss function, an optimizer and an scheduler.
+    To train a model, we need a loss function, an optimizer and a scheduler.
     """
     criterion = nn.MSELoss(reduction='mean')
     optimizer = torch.optim.Adam(model.parameters(), lr=lr, weight_decay=weight_decay)

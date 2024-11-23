@@ -9,7 +9,14 @@ def init_dataloader():
     Dataset stores the samples and their corresponding labels, and DataLoader wraps an iterable around the Dataset.
     """
     dataset = LinearDataset()
-    dataloader = DataLoader(dataset, batch_size=1, shuffle=True, num_workers=0)
+    dataloader = DataLoader(
+        dataset=dataset,
+        batch_size=4,
+        shuffle=True,
+        num_workers=0,
+        pin_memory=True,
+        drop_last=True
+    )
     return dataloader
 
 

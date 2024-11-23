@@ -9,8 +9,8 @@ def parser_add_main_args(parser):
     parser.add_argument('--seed', type=int, default=0)
     parser.add_argument('--epochs', type=int, default=1000)
     # training
-    parser.add_argument('--weight_decay', type=float, default=0.001)
     parser.add_argument('--lr', type=float, default=0.01)
+    parser.add_argument('--weight_decay', type=float, default=0.001)
 
 
 @dataclass
@@ -20,8 +20,8 @@ class Arguments:
     cpu: bool
     seed: int
     epochs: int
-    weight_decay: float
     lr: float
+    weight_decay: float
 
 
 def parser_parse_args(parser) -> Arguments:
@@ -32,8 +32,8 @@ def parser_parse_args(parser) -> Arguments:
         cpu=args.cpu,
         seed=args.seed,
         epochs=args.epochs,
-        weight_decay=args.weight_decay,
         lr=args.lr,
+        weight_decay=args.weight_decay,
     )
 
 
