@@ -1,6 +1,8 @@
 import torch
 import torch.nn as nn
 
+__all__ = ["init_optimizer", "train"]
+
 
 def init_optimizer(model, lr=0.01, weight_decay=0.001):
     """
@@ -22,12 +24,12 @@ def train(dataloader, model, criterion, optimizer, scheduler, device):
     model.to(device)
     model.train()
     for batch, (X, y) in enumerate(dataloader):
+        optimizer.zero_grad()
         X, y = X.to(device), y.to(device)
         # Compute prediction error
         predict = model(X)
         loss = criterion(predict, y)
         # Backpropagation
-        optimizer.zero_grad()
         loss.backward()
         optimizer.step()
         scheduler.step()

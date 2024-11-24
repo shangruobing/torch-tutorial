@@ -5,6 +5,8 @@ import torch
 
 from model import LinearRegression
 
+__all__ = ["inference"]
+
 
 def inference(model_folder: Path):
     """

@@ -1,11 +1,14 @@
 import torch.nn as nn
 
+__all__ = ["LinearRegression"]
+
 
 class LinearRegression(nn.Module):
     """
     To define a neural network in PyTorch, we create a class that inherits from nn.Module.
     We define the layers of the network in the __init__ function and specify how data will pass through the network in the forward function.
     """
+
     def __init__(self):
         super(LinearRegression, self).__init__()
         self.linear = nn.Sequential(

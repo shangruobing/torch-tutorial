@@ -1,5 +1,7 @@
 import torch
 
+__all__ = ["test"]
+
 
 def test(dataloader, model, criterion, device):
     """

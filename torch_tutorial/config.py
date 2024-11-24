@@ -1,7 +1,7 @@
 import os
 import sys
-from pathlib import Path
 from os.path import dirname, abspath
+from pathlib import Path
 
 from utils import get_now_datetime
 

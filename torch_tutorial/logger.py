@@ -2,9 +2,11 @@ import os
 
 import pandas as pd
 
-from parse import Arguments
 from config import LOG_PATH
+from parse import Arguments
 from utils import get_now_datetime
+
+__all__ = ["Logger"]
 
 
 class Logger:
@@ -40,9 +42,9 @@ class Logger:
         if not os.path.exists(LOG_PATH):
             os.mkdir(LOG_PATH)
         if os.path.exists(FILE_PATH):
-            df = pd.read_csv(FILE_PATH, encoding="UTF-8-SIG")
+            df = pd.read_csv(FILE_PATH, encoding="UTF-8")
         else:
             # print(f"The {FILE_PATH} does not exist, an {FILE_PATH} file has been created.")
             df = pd.DataFrame(columns=list(new_row.keys()))
         df.loc[len(df)] = new_row
-        df.to_csv(FILE_PATH, index=False, encoding="UTF-8-SIG")
+        df.to_csv(FILE_PATH, index=False, encoding="UTF-8")

@@ -1,10 +1,13 @@
 import json
+from random import shuffle
 from typing import Tuple
 
 import torch
 from torch.utils.data import Dataset
 
 from config import DATASET_PATH
+
+__all__ = ["LinearDataset", "init_dataset"]
 
 
 class LinearDataset(Dataset):
@@ -15,13 +18,9 @@ class LinearDataset(Dataset):
     Dataset stores the samples and their corresponding labels, and DataLoader wraps an iterable around the Dataset.
     """
 
-    def __init__(self):
-        with open(DATASET_PATH / "data.json", "r") as file:
-            data = json.load(file)
+    def __init__(self, data: list):
         self.x = [torch.tensor([i.get("x")], dtype=torch.float) for i in data]
         self.y = [torch.tensor([i.get("y")], dtype=torch.float) for i in data]
-        # self.x = [torch.tensor([i], dtype=torch.float) for i in range(100)]
-        # self.y = [torch.tensor([i * 2 + 3]) for i in self.x]
 
     def __getitem__(self, index) -> Tuple[torch.Tensor, torch.Tensor]:
         return self.x[index], self.y[index]
@@ -37,6 +36,16 @@ class LinearDataset(Dataset):
         return information
 
 
+def init_dataset():
+    with open(DATASET_PATH / "data.json", "r") as file:
+        data = json.load(file)
+    shuffle(data)
+    split_ratio = 0.8
+    train_data = data[:int(split_ratio * len(data))]
+    test_data = data[int(split_ratio * len(data)):]
+    return LinearDataset(train_data), LinearDataset(test_data)
+
+
 if __name__ == '__main__':
-    dataset = LinearDataset()
-    print(dataset)
+    train_dataset, test_dataset = init_dataset()
+    print(train_dataset)
